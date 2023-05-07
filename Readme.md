@@ -1,5 +1,7 @@
 # Proyectos en Go
 
+``` go build -o main main.go  ```
+
 Aquí hay una lista de proyectos que puedes realizar mientras aprendes Go. Estos proyectos están clasificados por nivel de dificultad y algunos de ellos incluyen programación concurrente y multi-threads.
 
 ## Nivel Sencillo
