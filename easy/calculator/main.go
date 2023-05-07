@@ -27,7 +27,6 @@ func main() {
 		log.Fatal("Unable to create label:", err)
 	}
 
-	// Add the label to the window.
 	win.Add(l)
 
 	// Set the default window size.
