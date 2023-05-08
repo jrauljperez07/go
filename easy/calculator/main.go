@@ -1,41 +1,49 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/gotk3/gotk3/gtk"
 )
 
 func main() {
-	// Initialize GTK without parsing any command line arguments.
 	gtk.Init(nil)
 
-	// Create a new toplevel window, set its title, and connect it to the
-	// "destroy" signal to exit the GTK main loop when it is destroyed.
 	win, err := gtk.WindowNew(gtk.WINDOW_TOPLEVEL)
 	if err != nil {
 		log.Fatal("Unable to create window:", err)
 	}
-	win.SetTitle("Simple Example")
+	win.SetTitle("Calculator")
+	win.SetDefaultSize(500, 500)
+
 	win.Connect("destroy", func() {
 		gtk.MainQuit()
 	})
 
-	// Create a new label widget to show in the window.
-	l, err := gtk.LabelNew("Hello, gotk3!")
+	grid, err := gtk.GridNew()
 	if err != nil {
-		log.Fatal("Unable to create label:", err)
+		log.Fatal("Unable to create grid:", err)
 	}
 
-	win.Add(l)
+	// Crear 10 botones con números del 0 al 9
+	for i := 0; i < 10; i++ {
+		// Crear un nuevo botón con la etiqueta del número actual
+		btn, err := gtk.ButtonNewWithLabel(fmt.Sprintf("%d", i))
+		if err != nil {
+			panic(err)
+		}
 
-	// Set the default window size.
-	win.SetDefaultSize(800, 600)
+		// Obtener la posición de la fila y la columna del botón
+		row := i / 3
+		col := i % 3
 
-	// Recursively show all widgets contained in this window.
+		// Agregar el botón a la cuadrícula en la fila y columna adecuadas
+		grid.Attach(btn, col, row, 1, 1)
+	}
+
+	win.Add(grid)
+
 	win.ShowAll()
-
-	// Begin executing the GTK main loop.  This blocks until
-	// gtk.MainQuit() is run.
 	gtk.Main()
 }
