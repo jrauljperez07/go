@@ -1,0 +1,9 @@
+.DS_Store
++    rm -rf $HOME/.Trash/*  # Empty Trash
+
++    # Remove any old versions of gems
++    gem cleanup > /dev/null 2>&1
++    # Remove any old versions of gems
++    gem cleanup > /dev/null 2>&1
+
++    # Remove any old versions of gems
